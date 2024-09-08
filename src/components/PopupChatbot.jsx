@@ -12,7 +12,7 @@ const PopupChatbot = () => {
   const [client, setClient] = useState(null);
 
   useEffect(() => {
-    const apiKey = process.env.REACT_APP_MISTRAL_API_KEY;
+    const apiKey = import.meta.env.VITE_MISTRAL_API_KEY;
     if (apiKey) {
       setClient(new Mistral({ apiKey }));
     } else {
