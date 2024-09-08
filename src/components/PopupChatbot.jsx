@@ -1,36 +1,39 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { MessageSquare, X } from 'lucide-react';
+import { Mistral } from '@mistralai/mistralai';
 
 const PopupChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
+  const [client, setClient] = useState(null);
+
+  useEffect(() => {
+    const apiKey = process.env.REACT_APP_MISTRAL_API_KEY;
+    if (apiKey) {
+      setClient(new Mistral({ apiKey }));
+    } else {
+      console.error('Mistral API key not found');
+    }
+  }, []);
 
   const sendMessage = async () => {
-    if (input.trim() === '') return;
+    if (input.trim() === '' || !client) return;
 
     const userMessage = { role: 'user', content: input };
-    setMessages([...messages, userMessage]);
+    setMessages(prevMessages => [...prevMessages, userMessage]);
     setInput('');
 
     try {
-      const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': 'Bearer YOUR_MISTRAL_API_KEY'
-        },
-        body: JSON.stringify({
-          model: 'mistral-tiny',
-          messages: [...messages, userMessage]
-        })
+      const chatResponse = await client.agents.complete({
+        agent_id: "ag:4488b22a:20240902:manager-agent:a178d675",
+        messages: [...messages, userMessage],
       });
 
-      const data = await response.json();
-      const botMessage = { role: 'assistant', content: data.choices[0].message.content };
+      const botMessage = { role: 'assistant', content: chatResponse.choices[0].message.content };
       setMessages(prevMessages => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Error calling Mistral API:', error);
