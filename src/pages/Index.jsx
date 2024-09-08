@@ -66,6 +66,32 @@ const Index = () => {
             </CardContent>
           </Card>
         </section>
+
+        <section className="mb-16 relative">
+          <div className="absolute inset-0 flex items-center justify-center">
+            <div className="grid grid-cols-3 gap-4">
+              {[...Array(9)].map((_, index) => (
+                <img key={index} src="/placeholder.svg" alt={`Customer ${index + 1}`} className="w-24 h-24 rounded-full object-cover" />
+              ))}
+            </div>
+          </div>
+          <div className="text-center relative z-10 bg-white bg-opacity-80 py-16">
+            <h2 className="text-4xl font-bold mb-4">JOIN THE BEST</h2>
+            <h3 className="text-6xl font-bold mb-8">Powering 100,000+ of<br />the best customer<br />experiences</h3>
+            <div className="space-x-4">
+              <Button size="lg" className="bg-purple-600 text-white hover:bg-purple-700">Free trial</Button>
+              <Button size="lg" variant="outline">Get a demo</Button>
+            </div>
+          </div>
+        </section>
+
+        <section className="mb-16">
+          <div className="flex justify-between items-center">
+            {['LIBERTY', 'Shopify', 'SQUARESPACE', 'Uber', 'Stanley Black & Decker', 'TESCO', 'LUS'].map((company, index) => (
+              <div key={index} className="text-gray-500 font-bold text-xl">{company}</div>
+            ))}
+          </div>
+        </section>
       </main>
 
       <footer className="bg-gray-100 py-8">
