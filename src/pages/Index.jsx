@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import ChatbotUI from '../components/ChatbotUI';
+import PopupChatbot from '../components/PopupChatbot';
 
 const Index = () => {
   return (
@@ -50,8 +50,8 @@ const Index = () => {
         </section>
 
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Try Our AI Chatbot</h2>
-          <ChatbotUI />
+          <h2 className="text-3xl font-bold mb-8 text-center">Our AI Solutions in Action</h2>
+          <p className="text-center text-xl mb-4">Click the chat icon in the bottom right corner to try our AI chatbot!</p>
         </section>
       </main>
 
@@ -60,6 +60,8 @@ const Index = () => {
           <p>&copy; 2024 AI Solutions Co. All rights reserved.</p>
         </div>
       </footer>
+
+      <PopupChatbot />
     </div>
   );
 };
