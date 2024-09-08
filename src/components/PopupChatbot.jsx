@@ -3,42 +3,47 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardHeader, CardTitle, CardContent } from "@/components/ui/card";
 import { MessageSquare, X } from 'lucide-react';
-import { Mistral } from '@mistralai/mistralai';
 
 const PopupChatbot = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
-  const [client, setClient] = useState(null);
-
-  useEffect(() => {
-    const apiKey = '6abqmShXzKQjGaJkFY3zPpWjkpU6uT7V';
-    if (apiKey) {
-      setClient(new Mistral({ apiKey }));
-    } else {
-      console.error('Mistral API key not found');
-    }
-  }, []);
+  const [isLoading, setIsLoading] = useState(false);
 
   const sendMessage = async () => {
-    if (input.trim() === '' || !client) return;
+    if (input.trim() === '') return;
 
     const userMessage = { role: 'user', content: input };
     setMessages(prevMessages => [...prevMessages, userMessage]);
     setInput('');
+    setIsLoading(true);
 
     try {
-      const chatResponse = await client.agents.complete({
-        agent_id: "ag:4488b22a:20240902:manager-agent:a178d675",
-        messages: [...messages, userMessage],
+      const response = await fetch('https://api.mistral.ai/v1/chat/completions', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer 6abqmShXzKQjGaJkFY3zPpWjkpU6uT7V'
+        },
+        body: JSON.stringify({
+          model: 'mistral-tiny',
+          messages: [...messages, userMessage]
+        })
       });
 
-      const botMessage = { role: 'assistant', content: chatResponse.choices[0].message.content };
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const data = await response.json();
+      const botMessage = { role: 'assistant', content: data.choices[0].message.content };
       setMessages(prevMessages => [...prevMessages, botMessage]);
     } catch (error) {
       console.error('Error calling Mistral API:', error);
-      const errorMessage = { role: 'assistant', content: 'Sorry, I encountered an error. Please try again.' };
+      const errorMessage = { role: 'assistant', content: `Sorry, I encountered an error: ${error.message}. Please try again.` };
       setMessages(prevMessages => [...prevMessages, errorMessage]);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -74,10 +79,13 @@ const PopupChatbot = () => {
                 placeholder="Type your message..."
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && sendMessage()}
+                onKeyPress={(e) => e.key === 'Enter' && !isLoading && sendMessage()}
                 className="flex-grow mr-2"
+                disabled={isLoading}
               />
-              <Button onClick={sendMessage}>Send</Button>
+              <Button onClick={sendMessage} disabled={isLoading}>
+                {isLoading ? 'Sending...' : 'Send'}
+              </Button>
             </div>
           </CardContent>
         </Card>
