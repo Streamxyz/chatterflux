@@ -2,22 +2,40 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import PopupChatbot from '../components/PopupChatbot';
+import ImageSlideshow from '../components/ImageSlideshow';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-blue-100 to-white">
-      <header className="bg-white shadow-md">
-        <div className="container mx-auto px-4 py-6">
-          <h1 className="text-3xl font-bold text-blue-600">AI Solutions Co.</h1>
+    <div className="min-h-screen bg-white">
+      <header className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-4">
+          <nav className="flex justify-between items-center">
+            <h1 className="text-2xl font-bold text-blue-600">AI Solutions Co.</h1>
+            <div className="space-x-4">
+              <Button variant="ghost">Product</Button>
+              <Button variant="ghost">Function</Button>
+              <Button variant="ghost">Agents</Button>
+              <Button variant="ghost">Resources</Button>
+              <Button variant="ghost">Enterprise</Button>
+              <Button variant="ghost">Pricing</Button>
+              <Button variant="ghost">Login</Button>
+              <Button className="bg-indigo-600 text-white hover:bg-indigo-700">Sign Up</Button>
+            </div>
+          </nav>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-12">
         <section className="mb-16 text-center">
-          <h2 className="text-4xl font-bold mb-4">Revolutionize Your Business with AI</h2>
-          <p className="text-xl text-gray-600 mb-8">Harness the power of artificial intelligence with our cutting-edge solutions.</p>
-          <Button size="lg">Get Started</Button>
+          <h2 className="text-5xl font-bold mb-4">Build and Recruit <span className="text-indigo-600">AI Agents</span></h2>
+          <p className="text-xl text-gray-600 mb-8">Build and recruit teams of AI agents to complete tasks on autopilot.</p>
+          <div className="space-x-4">
+            <Button size="lg" className="bg-indigo-600 text-white hover:bg-indigo-700">Try for free</Button>
+            <Button size="lg" variant="outline">Request demo</Button>
+          </div>
         </section>
+
+        <ImageSlideshow />
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <Card>
@@ -47,11 +65,6 @@ const Index = () => {
               <p>Enhance productivity and decision-making with AI-powered personal assistants.</p>
             </CardContent>
           </Card>
-        </section>
-
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8 text-center">Our AI Solutions in Action</h2>
-          <p className="text-center text-xl mb-4">Click the chat icon in the bottom right corner to try our AI chatbot!</p>
         </section>
       </main>
 
