@@ -1,80 +1,53 @@
 import React from 'react';
 import { Button } from "@/components/ui/button";
-import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
-import PopupChatbot from '../components/PopupChatbot';
-import ImageSlideshow from '../components/ImageSlideshow';
+import { Input } from "@/components/ui/input";
+import { Card, CardContent } from "@/components/ui/card";
+import { Search } from 'lucide-react';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-white">
-      <header className="bg-white shadow-sm">
-        <div className="container mx-auto px-4 py-4">
-          <nav className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-blue-600">AI Solutions Co.</h1>
-            <div className="space-x-4">
-              <Button variant="ghost">Product</Button>
-              <Button variant="ghost">Function</Button>
-              <Button variant="ghost">Agents</Button>
-              <Button variant="ghost">Resources</Button>
-              <Button variant="ghost">Enterprise</Button>
-              <Button variant="ghost">Pricing</Button>
-              <Button variant="ghost">Login</Button>
-              <Button className="bg-indigo-600 text-white hover:bg-indigo-700">Sign Up</Button>
-            </div>
-          </nav>
-        </div>
-      </header>
+      <Header />
 
       <main className="container mx-auto px-4 py-12">
-        <section className="mb-16 text-center">
-          <h2 className="text-5xl font-bold mb-4">Build and Recruit <span className="text-indigo-600">AI Agents</span></h2>
-          <p className="text-xl text-gray-600 mb-8">Build and recruit teams of AI agents to complete tasks on autopilot.</p>
-          <div className="space-x-4">
-            <Button size="lg" className="bg-indigo-600 text-white hover:bg-indigo-700">Try for free</Button>
-            <Button size="lg" variant="outline">Request demo</Button>
+        <section className="text-center mb-16">
+          <h1 className="text-5xl font-bold mb-4 text-blue-900">Champion the customer experience</h1>
+          <p className="text-xl text-gray-600 mb-8">The best customer experiences are built with Zendesk</p>
+          <div className="max-w-2xl mx-auto relative">
+            <Input 
+              type="text" 
+              placeholder="Search" 
+              className="pl-10 pr-4 py-2 w-full rounded-full border-2 border-blue-500 focus:outline-none focus:border-purple-500"
+            />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
           </div>
         </section>
 
-        <ImageSlideshow />
-
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
-          <Card>
-            <CardHeader>
-              <CardTitle>AI Agents</CardTitle>
-              <CardDescription>Intelligent automation for your workflows</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Our AI agents can handle complex tasks, freeing up your team to focus on strategic initiatives.</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>AI Chatbots</CardTitle>
-              <CardDescription>24/7 customer support and engagement</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Provide instant responses and assistance to your customers with our advanced chatbots.</p>
-            </CardContent>
-          </Card>
-          <Card>
-            <CardHeader>
-              <CardTitle>AI Assistants</CardTitle>
-              <CardDescription>Personalized help for every user</CardDescription>
-            </CardHeader>
-            <CardContent>
-              <p>Enhance productivity and decision-making with AI-powered personal assistants.</p>
-            </CardContent>
-          </Card>
+          {['Support', 'Sales', 'Customer Service'].map((category, index) => (
+            <Card key={index} className="text-center p-6 hover:shadow-lg transition-shadow">
+              <CardContent>
+                <div className="w-16 h-16 mx-auto mb-4 bg-purple-100 rounded-full flex items-center justify-center">
+                  <span className="text-2xl text-purple-600">{category[0]}</span>
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-blue-900">{category}</h3>
+                <p className="text-gray-600">Provide world-class {category.toLowerCase()} experiences.</p>
+              </CardContent>
+            </Card>
+          ))}
+        </section>
+
+        <section className="bg-blue-900 text-white py-16 px-4 rounded-lg mb-16">
+          <div className="max-w-3xl mx-auto text-center">
+            <h2 className="text-3xl font-bold mb-8">"Zendesk has helped us streamline our customer service process and improve our response times."</h2>
+            <p className="text-xl mb-4">- Jane Doe, CEO of TechCorp</p>
+          </div>
         </section>
       </main>
 
-      <footer className="bg-gray-100 py-8">
-        <div className="container mx-auto px-4 text-center text-gray-600">
-          <p>&copy; 2024 AI Solutions Co. All rights reserved.</p>
-        </div>
-      </footer>
-
-      <PopupChatbot />
+      <Footer />
     </div>
   );
 };
