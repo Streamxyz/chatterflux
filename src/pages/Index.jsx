@@ -2,7 +2,7 @@ import React from 'react';
 import { Button } from "@/components/ui/button";
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from "@/components/ui/card";
 import PopupChatbot from '../components/PopupChatbot';
-import ImageSlideshow from '../components/ImageSlideshow';
+import Footer from '../components/Footer';
 
 const Index = () => {
   return (
@@ -34,8 +34,6 @@ const Index = () => {
             <Button size="lg" variant="outline">Request demo</Button>
           </div>
         </section>
-
-        <ImageSlideshow />
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-16">
           <Card>
@@ -94,12 +92,7 @@ const Index = () => {
         </section>
       </main>
 
-      <footer className="bg-gray-100 py-8">
-        <div className="container mx-auto px-4 text-center text-gray-600">
-          <p>&copy; 2024 AI Solutions Co. All rights reserved.</p>
-        </div>
-      </footer>
-
+      <Footer />
       <PopupChatbot />
     </div>
   );
