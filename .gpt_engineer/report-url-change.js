@@ -12,8 +12,8 @@ export const loadReportUrlChangeEventListener = () => {
     const observer = new MutationObserver(() => {
       if (oldHref !== document.location.href) {
         oldHref = document.location.href;
-        window.top.postMessage({ type: "URL_CHANGED", url: document.location.href }, "https://run.gptengineer.app");
-        window.top.postMessage({ type: "URL_CHANGED", url: document.location.href }, "http://localhost:3000");
+        window.top.postMessage({ type: "URL_CHANGED", url: document.location.href }, "");
+        window.top.postMessage({ type: "URL_CHANGED", url: document.location.href }, "");
       }
     });
     observer.observe(body, { childList: true, subtree: true });
