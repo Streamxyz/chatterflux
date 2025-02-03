@@ -8,22 +8,22 @@ const Function = () => {
       <header className="bg-white shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <nav className="flex justify-between items-center">
-            <h1 className="text-2xl font-bold text-blue-600">AI Решения ООД</h1>
+            <h1 className="text-2xl font-bold text-blue-600">Бизнес Решения ООД</h1>
             <div className="space-x-4">
               <Button variant="ghost">Начало</Button>
-              <Button variant="ghost">Продукт</Button>
-              <Button variant="ghost">Предприятие</Button>
+              <Button variant="ghost">Услуги</Button>
+              <Button variant="ghost">Уебсайт</Button>
               <Button variant="ghost">Цени</Button>
               <Button variant="ghost">Вход</Button>
-              <Button className="bg-indigo-600 text-white hover:bg-indigo-700">Регистрация</Button>
+              <Button className="bg-indigo-600 text-white hover:bg-indigo-700">Консултация</Button>
             </div>
           </nav>
         </div>
       </header>
 
       <main className="container mx-auto px-4 py-12">
-        <h1 className="text-4xl font-bold mb-8">Функции</h1>
-        <p className="text-xl mb-8">Разгледайте мощните функции на нашата AI платформа.</p>
+        <h1 className="text-4xl font-bold mb-8">Регистрация на Фирма</h1>
+        <p className="text-xl mb-8">Професионална помощ при регистрация на фирма, счетоводни услуги и правни консултации.</p>
         <Button size="lg" className="bg-indigo-600 text-white hover:bg-indigo-700">Научете повече</Button>
       </main>
 
