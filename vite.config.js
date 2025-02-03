@@ -26,6 +26,12 @@ export default defineConfig({
     assetsDir: "assets",
     sourcemap: true,
     minify: "terser",
+    terserOptions: {
+      compress: {
+        drop_console: false,
+        drop_debugger: true
+      }
+    },
     rollupOptions: {
       input: {
         main: resolve(__dirname, "index.html"),
