@@ -3,7 +3,6 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import { resolve } from "path";
 
-// https://vitejs.dev/config/
 export default defineConfig({
   server: {
     host: "::",
@@ -21,5 +20,19 @@ export default defineConfig({
         replacement: resolve(__dirname, "lib"),
       },
     ],
+  },
+  build: {
+    outDir: "dist",
+    assetsDir: "assets",
+    sourcemap: true,
+    minify: "terser",
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, "index.html"),
+      },
+      output: {
+        manualChunks: undefined,
+      },
+    },
   },
 });
